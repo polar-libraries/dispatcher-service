@@ -1,6 +1,9 @@
 package com.polarbookshop.dispatcherservice;
 
-public record OrderAcceptedMessage(
-        Long id
-) {
+import java.io.Serializable;
+
+public record OrderAcceptedMessage (
+        Long orderId
+) implements Serializable {
+
 }
