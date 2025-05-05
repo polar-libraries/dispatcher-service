@@ -17,7 +17,11 @@ public class DispatchingFunctionsIntegrationTests {
     @Autowired
     private FunctionCatalog catalog;
 
+
    @Test
+
+    @Test
+
     void packOrder() {
         Function<OrderAcceptedMessage, Long> pack = catalog.lookup(Function.class, "pack");
         long orderId = 121;
