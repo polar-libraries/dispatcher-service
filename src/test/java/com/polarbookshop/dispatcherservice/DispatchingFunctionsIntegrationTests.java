@@ -9,6 +9,8 @@ import reactor.test.StepVerifier;
 
 import java.util.function.Function;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @FunctionalSpringBootTest
 public class DispatchingFunctionsIntegrationTests {
 
