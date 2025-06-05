@@ -14,7 +14,7 @@ spec:
       labels:
         app: dispatcher-service
       annotations:
-        prometheus.io/scrap: "true"
+        prometheus.io/scrape: "true"
         prometheus.io/path: /actuator/prometheus
         prometheus.io/port: "9003"
     spec:
@@ -28,11 +28,6 @@ spec:
                 command: ["sh", "-c", "sleep 5"]
           ports:
             - containerPort: 9003
-          env:
-            - name: SPRING_CLOUD_CONFIG
-              value: http://config-service
-            - name: SPRING_RABBITMQ_HOST
-              value: polar-rabbitmq
           livenessProbe:
             httpGet:
               path: /actuator/health/liveness
@@ -45,3 +40,10 @@ spec:
               port: 9001
             initialDelaySeconds: 5
             periodSeconds: 15
+          volumeMounts:
+            - name: dispatcher-service-volume
+              mountPath: /workspace/config
+      volumes:
+        - name: dispatcher-service-volume
+          configMap:
+            name: dispatcher-config
